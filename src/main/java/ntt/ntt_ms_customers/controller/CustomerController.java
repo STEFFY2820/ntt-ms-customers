@@ -1,11 +1,14 @@
 package ntt.ntt_ms_customers.controller;
 
 import lombok.RequiredArgsConstructor;
-import ntt.ntt_ms_customers.entity.Customer;
+import ntt.ntt_ms_customers.dto.CustomerDto;
+import ntt.ntt_ms_customers.mapper.CustomerMapper;
 import ntt.ntt_ms_customers.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -14,24 +17,26 @@ public class CustomerController {
     private final CustomerService service;
 
     @GetMapping
-    public Flux<Customer> getAll() {
-        return service.findAll();
+    public Flux<CustomerDto> getAll() {
+        return service.findAll().map(CustomerMapper::toDto);
     }
 
     @GetMapping("/{id}")
-    public Mono<Customer> getById(@PathVariable String id) {
-        return service.findById(id);
+    public Mono<CustomerDto> getById(@PathVariable String id) {
+        return service.findById(id).map(CustomerMapper::toDto);
     }
 
     @PostMapping
-    public Mono<Customer> create(@RequestBody Customer customer) {
-        return service.save(customer);
+    public Mono<CustomerDto> create(@Valid @RequestBody CustomerDto dto) {
+        return service.save(CustomerMapper.toEntity(dto))
+                .map(CustomerMapper::toDto);
     }
 
     @PutMapping("/{id}")
-    public Mono<Customer> update(@PathVariable String id, @RequestBody Customer customer) {
-        customer.setId(id);
-        return service.save(customer);
+    public Mono<CustomerDto> update(@PathVariable String id, @Valid @RequestBody CustomerDto dto) {
+        dto.setId(id);
+        return service.save(CustomerMapper.toEntity(dto))
+                .map(CustomerMapper::toDto);
     }
 
     @DeleteMapping("/{id}")
