@@ -1,8 +1,135 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 info:
-  title: open api
-  description: API.
+  title: Customers API
   version: 1.0.0
+  description: API para la gestión de clientes del banco (personales y empresariales).
 servers:
-  - url: http://localhost:8080
-    description: Servidor local
+  - url: http://localhost:8080/api/v1
+    description: Local server
+
+paths:
+  /customers:
+    get:
+      summary: Listar todos los clientes
+      tags: [Customers]
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+    post:
+      summary: Crear un cliente
+      tags: [Customers]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Cliente creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+
+  /customers/{id}:
+    get:
+      summary: Obtener cliente por id
+      tags: [Customers]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          example: p_001
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          description: Cliente no encontrado
+    put:
+      summary: Actualizar un cliente
+      tags: [Customers]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          example: e_001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Cliente actualizado
+    delete:
+      summary: Eliminar un cliente
+      tags: [Customers]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cliente eliminado
+
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - _id
+        - type
+        - email
+      properties:
+        _id:
+          type: string
+          example: p_001
+        type:
+          type: string
+          enum: [personal, empresarial]
+        firstName:
+          type: string
+          example: Edgar
+        lastName:
+          type: string
+          example: Alan
+        companyName:
+          type: string
+          example: Empresa SAC
+        documentType:
+          type: string
+          example: dni
+        documentNumber:
+          type: string
+          example: "87654321"
+        ruc:
+          type: string
+          example: "20123456789"
+        email:
+          type: string
+          format: email
+          example: fabian@gmail.com
+        phone:
+          type: string
+          example: "+51 987654321"
+        address:
+          type: string
+          example: Av. los Cedros
