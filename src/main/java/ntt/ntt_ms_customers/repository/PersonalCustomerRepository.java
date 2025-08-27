@@ -1,9 +1,9 @@
 package ntt.ntt_ms_customers.repository;
 
-import ntt.ntt_ms_customers.entity.Customer;
+import ntt.ntt_ms_customers.entity.PersonalCustomer;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends ReactiveMongoRepository<Customer, String> {
+public interface PersonalCustomerRepository extends ReactiveMongoRepository<PersonalCustomer, String> {
 }
