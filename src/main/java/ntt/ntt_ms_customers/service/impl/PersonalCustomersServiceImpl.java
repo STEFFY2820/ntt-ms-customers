@@ -48,4 +48,8 @@ public class PersonalCustomersServiceImpl implements PersonalCustomerService {
                 .map(PersonalCustomerMapper::toResponse);
     }
 
+    public Mono<Void> deletePersonalCustomer(String id) {
+        return repository.deleteById(id);
+    }
+
 }

@@ -15,6 +15,6 @@ public interface PersonalCustomerService {
 
     public Mono<PersonalCustomerResponseDto> updatePersonalCustomer(String id, PersonalCustomerRequestDto request);
 
-    //public Mono<Void> deletePersonalCustomer(String id);
+    public Mono<Void> deletePersonalCustomer(String id);
 
 }

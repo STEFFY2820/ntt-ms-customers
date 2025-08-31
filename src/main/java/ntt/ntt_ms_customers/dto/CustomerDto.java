@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ntt.ntt_ms_customers.enums.CustomerSubType;
 
 import javax.validation.constraints.NotBlank;
 
@@ -28,6 +29,7 @@ public class CustomerDto {
     private String id;
     @NotBlank
     private String type;
+    private CustomerSubType subType;
     private String email;
     private String phone;
     private String address;

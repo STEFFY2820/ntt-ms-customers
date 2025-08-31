@@ -15,6 +15,7 @@ public class ListCustomerMapper {
             return PersonalCustomerResponseDto.builder()
                     .id(p.getId())
                     .type(p.getType())
+                    .subType(p.getSubType())
                     .email(p.getEmail())
                     .phone(p.getPhone())
                     .address(p.getAddress())
@@ -27,12 +28,13 @@ public class ListCustomerMapper {
             BusinessCustomer b = (BusinessCustomer) customer;
             return BusinessCustomerResponseDto.builder()
                     .id(b.getId())
-                    .companyName(b.getCompanyName())
-                    .ruc(b.getRuc())
                     .type(b.getType())
+                    .subType(b.getSubType())
                     .email(b.getEmail())
                     .phone(b.getPhone())
                     .address(b.getAddress())
+                    .companyName(b.getCompanyName())
+                    .ruc(b.getRuc())
                     .build();
         }
         throw new IllegalArgumentException("falllo al traer clientes");
