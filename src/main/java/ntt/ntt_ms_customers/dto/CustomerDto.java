@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import ntt.ntt_ms_customers.enums.CustomerSubType;
+import ntt.ntt_ms_customers.enums.CustomerType;
 
 import javax.validation.constraints.NotBlank;
 
@@ -18,8 +19,8 @@ import javax.validation.constraints.NotBlank;
         visible = true
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = PersonalCustomerResponseDto.class, name = "personal"),
-        @JsonSubTypes.Type(value = BusinessCustomerResponseDto.class, name = "empresarial")
+        @JsonSubTypes.Type(value = PersonalCustomerResponseDto.class, name = "PERSONAL"),
+        @JsonSubTypes.Type(value = BusinessCustomerResponseDto.class, name = "BUSINESS")
 })
 @Data
 @SuperBuilder
@@ -28,7 +29,7 @@ import javax.validation.constraints.NotBlank;
 public class CustomerDto {
     private String id;
     @NotBlank
-    private String type;
+    private CustomerType type;
     private CustomerSubType subType;
     private String email;
     private String phone;

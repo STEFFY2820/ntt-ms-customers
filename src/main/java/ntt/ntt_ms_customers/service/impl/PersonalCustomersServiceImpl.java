@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.logging.Logger;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -22,7 +20,7 @@ public class PersonalCustomersServiceImpl implements PersonalCustomerService {
     private final PersonalCustomerRepository repository;
 
     public Flux<PersonalCustomerResponseDto> finAllPersonalCustomers() {
-        return repository.findByType("personal")
+        return repository.findByType("PERSONAL")
                 .map(PersonalCustomerMapper::toResponse);
     }
 

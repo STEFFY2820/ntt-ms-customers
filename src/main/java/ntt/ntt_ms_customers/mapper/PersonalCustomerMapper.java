@@ -3,6 +3,7 @@ package ntt.ntt_ms_customers.mapper;
 import ntt.ntt_ms_customers.dto.PersonalCustomerRequestDto;
 import ntt.ntt_ms_customers.dto.PersonalCustomerResponseDto;
 import ntt.ntt_ms_customers.entity.PersonalCustomer;
+import ntt.ntt_ms_customers.enums.CustomerType;
 
 import java.util.function.Consumer;
 
@@ -25,7 +26,7 @@ public class PersonalCustomerMapper {
 
     public static PersonalCustomer toEntity(PersonalCustomerRequestDto request) {
         return PersonalCustomer.builder()
-                .type(request.getType())
+                .type(CustomerType.PERSONAL)
                 .subType(request.getSubType())
                 .email(request.getEmail())
                 .phone(request.getPhone())
