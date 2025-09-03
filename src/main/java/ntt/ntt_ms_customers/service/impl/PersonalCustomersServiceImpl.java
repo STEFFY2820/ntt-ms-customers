@@ -42,7 +42,7 @@ public class PersonalCustomersServiceImpl implements PersonalCustomerService {
                     return entity;
                 })
                 .flatMap(repository::save)
-                .doOnError(e -> log.error("Fallo al actualizar cliente", id, e))
+                .doOnError(e -> log.error("Error, fallo al actualizar cliente", id, e))
                 .map(PersonalCustomerMapper::toResponse);
     }
 

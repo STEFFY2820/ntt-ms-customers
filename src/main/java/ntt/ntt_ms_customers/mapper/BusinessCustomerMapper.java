@@ -21,6 +21,8 @@ public class BusinessCustomerMapper {
                 .address(entity.getAddress())
                 .companyName(entity.getCompanyName())
                 .ruc(entity.getRuc())
+                .headlines(entity.getHeadlines())
+                .authorizedSigners(entity.getAuthorizedSigners())
                 .build();
     }
 
@@ -33,6 +35,8 @@ public class BusinessCustomerMapper {
                 .address(request.getAddress())
                 .companyName(request.getCompanyName())
                 .ruc(request.getRuc())
+                .headlines(request.getHeadlines())
+                .authorizedSigners(request.getAuthorizedSigners())
                 .build();
     }
 
@@ -50,6 +54,8 @@ public class BusinessCustomerMapper {
         updateIfNotNull(entity::setAddress, request.getAddress());
         updateIfNotNull(entity::setCompanyName, request.getCompanyName());
         updateIfNotNull(entity::setRuc, request.getRuc());
+        updateIfNotNull(entity::setHeadlines, request.getHeadlines());
+        updateIfNotNull(entity::setAuthorizedSigners, request.getAuthorizedSigners());
     }
 
 }

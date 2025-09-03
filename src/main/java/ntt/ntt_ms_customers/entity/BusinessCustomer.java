@@ -6,6 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.validation.constraints.Size;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,4 +17,7 @@ import lombok.experimental.SuperBuilder;
 public class BusinessCustomer extends Customer{
     private String companyName;
     private String ruc;
+    @Size(min = 1, message = "se requiere al menos un titular")
+    private List<Headlines> headlines;
+    private List<AuthorizedSigner> authorizedSigners;
 }
