@@ -35,6 +35,8 @@ public class ListCustomerMapper {
                     .address(b.getAddress())
                     .companyName(b.getCompanyName())
                     .ruc(b.getRuc())
+                    .headlines(b.getHeadlines())
+                    .authorizedSigners(b.getAuthorizedSigners())
                     .build();
         }
         throw new IllegalArgumentException("falllo al traer clientes");

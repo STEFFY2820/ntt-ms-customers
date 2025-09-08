@@ -2,17 +2,12 @@ package ntt.ntt_ms_customers.controller;
 
 import lombok.RequiredArgsConstructor;
 import ntt.ntt_ms_customers.dto.CustomerDto;
-import ntt.ntt_ms_customers.entity.Customer;
 import ntt.ntt_ms_customers.service.CustomerService;
-import ntt.ntt_ms_customers.service.impl.CustomerServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping("/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
